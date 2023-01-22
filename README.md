@@ -21,3 +21,5 @@ Posteriormente se ejecuta el siguiente comando para desplegar el proyecto en mod
 ```bash
 npm run dev
 ```
+
+> **_NOTA:_** Las credenciales de ingreso son usuario y contraseña admin
