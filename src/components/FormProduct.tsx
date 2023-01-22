@@ -31,10 +31,10 @@ const validationSchema = yup.object().shape({
   location: yup.string().required("Required"),
   manufacturer: yup.string().required("Required"),
   purchase: yup.date().required("Required"),
-  i_max: yup.number().required("Required"),
-  i_b: yup.number().required("Required"),
-  i_n: yup.number().required("Required"),
-  seals: yup.number().required("Required"),
+  i_max: yup.number().typeError("A number is required").required("Required"),
+  i_b: yup.number().typeError("A number is required").required("Required"),
+  i_n: yup.number().typeError("A number is required").required("Required"),
+  seals: yup.number().typeError("A number is required").required("Required"),
 });
 
 type Props = {
@@ -43,7 +43,7 @@ type Props = {
   handleSuccess: () => void;
 };
 
-const ModalAddProduct: FC<Props> = ({
+const FormProduct: FC<Props> = ({
   initialValues = INITIAL_VALUES,
   isCreate = true,
   handleSuccess,
@@ -326,4 +326,4 @@ const ModalAddProduct: FC<Props> = ({
   );
 };
 
-export default ModalAddProduct;
+export default FormProduct;

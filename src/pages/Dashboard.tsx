@@ -41,6 +41,7 @@ export default function Dashboard() {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
+    setPageActive(0);
     getProducts(0, event.target.value).then(setProducts);
   };
 
@@ -63,7 +64,13 @@ export default function Dashboard() {
   };
 
   const handleEdit = (product: Product) => {
-    setCurrentProduct(product);
+    var purchase = new Date(product.purchase);
+    purchase.setMinutes(purchase.getMinutes() - purchase.getTimezoneOffset()); 
+
+    setCurrentProduct({
+      ...product,
+      purchase: purchase.toISOString().slice(0,16)
+    });
     setIsOpenEdit(true);
   };
 
