@@ -1,30 +1,30 @@
-import { FC } from 'react'
+import type { FC } from "react";
 
 type Props = {
-  headers: string[]
-  rows: string[][]
-}
+  headers: string[];
+  rows: Array<Array<any>>;
+};
 
 const Table: FC<Props> = ({ headers, rows }) => {
   return (
-    <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-      <table className='w-full text-sm text-left text-gray-500'>
-        <thead className='text-xs uppercase bg-gray-700 text-white font-bold'>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="w-full text-sm text-left text-gray-500">
+        <thead className="text-xs uppercase bg-gray-700 text-white font-bold">
           <tr>
-            {headers.map(header => (
-              <th key={header} className='px-6 py-3'>
+            {headers.map((header) => (
+              <th key={header} className="px-6 py-3">
                 {header}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody className='text-slate-200'>
+        <tbody className="text-slate-200">
           {rows.map((row, indexRow) => (
-            <tr key={indexRow} className='bg-gray-800 hover:bg-gray-600'>
+            <tr key={indexRow} className="bg-gray-800 hover:bg-gray-600">
               {row.map((cell, indexCell) => (
                 <td
                   key={`${indexRow}-${indexCell}`}
-                  className='px-6 py-4 font-medium whitespace-nowrap'
+                  className="px-6 py-4 font-medium whitespace-nowrap"
                 >
                   {cell}
                 </td>
@@ -34,7 +34,7 @@ const Table: FC<Props> = ({ headers, rows }) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;

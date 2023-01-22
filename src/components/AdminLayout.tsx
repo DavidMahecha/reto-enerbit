@@ -1,12 +1,19 @@
 import { FC, PropsWithChildren, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { selectAuthState } from '@/store/slices/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAuthState, setAuthState } from '@/store/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
-import Logo from './Logo'
+import Button from './Button'
+import logo from '@/assets/logo.svg'
 
 const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
   const authState = useSelector(selectAuthState)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleCloseSession = () => {
+    dispatch(setAuthState(false));
+    navigate("/")
+  }
 
   useEffect(() => {
     if (!authState) {
@@ -17,10 +24,18 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <header>
-        <nav className='border-b border-b-slate-900 shadow-xl min-h-[50px]'>
-          <a className='block relative w-1/2 sm:w-1/6 lg:w-1/12 rounded-3xl' href='https://enerbit.co/' target='_blank' rel='noreferrer'>
-            <Logo className='w-full' />
+        <nav className='flex items-center justify-between border-b border-b-slate-900 shadow-xl min-h-[50px]'>
+          <a className='max-w-[150px]' href='https://enerbit.co/' target='_blank' rel='noreferrer'>
+            <img src={logo} alt="logo" />
           </a>
+
+          <Button
+              type="button"
+              onClick={handleCloseSession}
+              className="mr-1 md:mr-5"
+            >
+              Close session
+            </Button>
         </nav>
       </header>
 

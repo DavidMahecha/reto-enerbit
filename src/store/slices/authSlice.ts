@@ -15,8 +15,8 @@ export const authSlice = createSlice({
 })
 
 export const { setAuthState } = authSlice.actions
-export const selectAuthState = (state: { reducer: typeof initialState }) => {
-  console.log('?????', state)
-  return state.reducer.authState
+
+export const selectAuthState = (state: { authState: typeof initialState }) => { 
+  return state.authState
 }
 export default authSlice.reducer

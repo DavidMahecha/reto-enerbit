@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, useId, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
+import { login } from '@/services/auth.service'
+import { setAuthState } from '@/store/slices/authSlice'
+
 import Button from '@/components/Button'
 import FormControl from '@/components/FormControl'
 import Modal from '@/components/Modal'
-import { login } from '@/services/auth.service'
-import { setAuthState } from '@/store/slices/authSlice'
-import { useNavigate } from "react-router-dom";
 
 export default function Home () {
   const [form, setForm] = useState({
@@ -48,9 +49,9 @@ export default function Home () {
         isOpen={faildedLogin}
         handleToggle={handleToggleModal}
         title='Error'
-        description='Incorrect credentials.'
-        type='error'
-      />
+      >
+        Incorrect credentials.
+      </Modal>
 
       <section className='flex justify-center items-center min-h-screen'>
         <div className='bg-slate-900 shadow-md p-7 rounded-md max-w-full'>

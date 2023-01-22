@@ -6,7 +6,7 @@ export interface Product {
   owner: string;
   location: string;
   manufacturer: string;
-  purchase: any;
+  purchase: string;
   i_max: number;
   i_b: number;
   i_n: number;
@@ -15,6 +15,10 @@ export interface Product {
   created_at: Date;
   updated_at?: Date;
 }
+
+type ProductForm = Omit<Product, "id" | "created_at" | "updated_at"> & {
+  id?: Product["id"];
+};
 
 export interface ProductData {
   items: Product[];
