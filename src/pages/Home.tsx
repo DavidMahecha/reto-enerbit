@@ -1,8 +1,8 @@
-import { ChangeEvent, FormEvent, useId, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useId, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAuthState, setAuthState } from '@/store/slices/authSlice'
 import { login } from '@/services/auth.service'
-import { setAuthState } from '@/store/slices/authSlice'
 
 import Button from '@/components/Button'
 import FormControl from '@/components/FormControl'
@@ -18,6 +18,13 @@ export default function Home () {
   const id = useId()
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const authState = useSelector(selectAuthState)
+
+  useEffect(() => {
+    if (authState) {
+      navigate('/dashboard')
+    }
+  }, [authState])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
