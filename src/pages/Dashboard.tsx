@@ -1,6 +1,7 @@
 import type { Product, ProductData, ProductForm } from "@/types";
 import { ChangeEvent, useEffect, useId, useState } from "react";
 import { deleteProduct, getProducts } from "@/services/product.service";
+import { formatDate } from "@/utils";
 
 import Button from "@/components/Button";
 import FormControl from "@/components/FormControl";
@@ -109,12 +110,12 @@ export default function Dashboard() {
           product.owner,
           product.location,
           product.manufacturer,
-          product.purchase,
+          formatDate(product.purchase),
           product.i_max,
           product.i_b,
           product.i_n,
           product.seals,
-          product.created_at,
+          formatDate(product.created_at)
         ])
       : [];
 
